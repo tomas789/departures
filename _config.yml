@@ -1,0 +1,12 @@
+# GitHub Pages configuration
+title: "Prague Departure Board - Okrouhlická"
+description: "Real-time departure board for Okrouhlická tram stop in Prague"
+theme: jekyll-theme-minimal
+
+# Custom domain (optional - uncomment and modify if you have a custom domain)
+# url: "https://yourdomain.com"
+
+# GitHub repository info
+github:
+  repository_name: departures
+  owner_name: tomas789
