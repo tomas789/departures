@@ -97,6 +97,28 @@
             color: #888;
         }
 
+        .wake-lock-status {
+            font-size: 12px;
+            color: #00ff00;
+            margin-left: 10px;
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+        }
+
+        .wake-lock-status:hover {
+            background-color: #333;
+        }
+
+        .wake-lock-status.inactive {
+            color: #888;
+        }
+
+        .wake-lock-status.error {
+            color: #ff6600;
+        }
+
         .platforms-container {
             display: flex;
             gap: 0;
@@ -378,6 +400,7 @@
         <div class="header-right">
             <div class="current-time" id="currentTime">--:--:--</div>
             <div class="last-updated" id="lastUpdated">Loading...</div>
+            <div class="wake-lock-status inactive" id="wakeLockStatus" onclick="toggleWakeLock()" title="Click to toggle screen wake lock">🔒</div>
         </div>
     </div>
 
@@ -394,12 +417,93 @@
         let lastFetchTime = null;
         let activeFilter = null;
         let filterTimeout = null;
+        let wakeLock = null;
 
         // Platform configurations
         const platforms = {
             [PLATFORM_A_ID]: { name: 'Platform A', class: 'platform-a' },
             [PLATFORM_B_ID]: { name: 'Platform B', class: 'platform-b' }
         };
+
+        // Wake Lock API functions to prevent screen from sleeping
+        async function requestWakeLock() {
+            try {
+                if ('wakeLock' in navigator) {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Screen wake lock activated');
+                    updateWakeLockStatus('active');
+                    
+                    wakeLock.addEventListener('release', () => {
+                        console.log('Screen wake lock released');
+                        updateWakeLockStatus('inactive');
+                    });
+                    
+                    return true;
+                } else {
+                    console.log('Wake Lock API not supported');
+                    updateWakeLockStatus('error');
+                    return false;
+                }
+            } catch (err) {
+                console.error('Failed to request wake lock:', err);
+                updateWakeLockStatus('error');
+                return false;
+            }
+        }
+
+        async function releaseWakeLock() {
+            if (wakeLock) {
+                try {
+                    await wakeLock.release();
+                    wakeLock = null;
+                    updateWakeLockStatus('inactive');
+                } catch (err) {
+                    console.error('Failed to release wake lock:', err);
+                }
+            }
+        }
+
+        async function toggleWakeLock() {
+            if (wakeLock) {
+                await releaseWakeLock();
+            } else {
+                await requestWakeLock();
+            }
+        }
+
+        function updateWakeLockStatus(status) {
+            const statusElement = document.getElementById('wakeLockStatus');
+            statusElement.className = `wake-lock-status ${status}`;
+            
+            switch (status) {
+                case 'active':
+                    statusElement.textContent = '🔓';
+                    statusElement.title = 'Screen wake lock active - Click to disable';
+                    break;
+                case 'inactive':
+                    statusElement.textContent = '🔒';
+                    statusElement.title = 'Screen wake lock inactive - Click to enable';
+                    break;
+                case 'error':
+                    statusElement.textContent = '❌';
+                    statusElement.title = 'Wake lock not supported or failed';
+                    break;
+            }
+        }
+
+        // Handle visibility change to re-request wake lock when page becomes visible
+        document.addEventListener('visibilitychange', async () => {
+            if (wakeLock !== null && document.visibilityState === 'visible') {
+                try {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Screen wake lock re-activated');
+                    updateWakeLockStatus('active');
+                } catch (err) {
+                    console.error('Failed to re-request wake lock:', err);
+                    updateWakeLockStatus('error');
+                }
+            }
+        });
 
         function formatTime(timestamp) {
             return new Date(timestamp).toLocaleTimeString('cs-CZ', {
@@ -686,6 +790,9 @@
             updateHeader();
             updateCurrentTime();
             fetchDepartures();
+            
+            // Try to activate wake lock automatically
+            requestWakeLock();
             
             // Fetch new data every 10 seconds
             setInterval(fetchDepartures, 10000);
