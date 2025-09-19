@@ -1,0 +1,129 @@
+{
+    "name": "Okrouhlická",
+    "districtCode": "AB",
+    "idosCategory": 301003,
+    "idosName": "Okrouhlická",
+    "fullName": "Okrouhlická",
+    "uniqueName": "Okrouhlická",
+    "node": 514,
+    "cis": 58843,
+    "avgLat": 50.11968,
+    "avgLon": 14.460331,
+    "avgJtskX": -739552.75,
+    "avgJtskY": -1039843.69,
+    "municipality": "Praha",
+    "mainTrafficType": "tram",
+    "stops": [
+        {
+            "id": "514/1",
+            "platform": "A",
+            "altIdosName": "Okrouhlická",
+            "lat": 50.1195869,
+            "lon": 14.4607468,
+            "jtskX": -739524.75,
+            "jtskY": -1039857.88,
+            "zone": "P",
+            "mainTrafficType": "tram",
+            "wheelchairAccess": "possible",
+            "gtfsIds": [
+                "U514Z1P"
+            ],
+            "lines": [
+                {
+                    "id": 3,
+                    "name": "3",
+                    "type": "tram",
+                    "direction": "Nádraží Braník",
+                    "direction2": "Bohemians"
+                },
+                {
+                    "id": 10,
+                    "name": "10",
+                    "type": "tram",
+                    "direction": "Sídliště Řepy"
+                },
+                {
+                    "id": 24,
+                    "name": "24",
+                    "type": "tram",
+                    "direction": "Náměstí Bratří Synků"
+                },
+                {
+                    "id": 36,
+                    "name": "36",
+                    "type": "tram",
+                    "direction": "Zvonařka"
+                },
+                {
+                    "id": 95,
+                    "name": "95",
+                    "type": "tram",
+                    "isNight": true,
+                    "direction": "Ústřední dílny DP"
+                },
+                {
+                    "id": 905,
+                    "name": "905",
+                    "type": "bus",
+                    "isNight": true,
+                    "direction": "Jižní Město"
+                }
+            ]
+        },
+        {
+            "id": "514/2",
+            "platform": "B",
+            "altIdosName": "Okrouhlická",
+            "lat": 50.11977,
+            "lon": 14.4599152,
+            "jtskX": -739580.8,
+            "jtskY": -1039829.5,
+            "zone": "P",
+            "mainTrafficType": "tram",
+            "wheelchairAccess": "possible",
+            "gtfsIds": [
+                "U514Z2P"
+            ],
+            "lines": [
+                {
+                    "id": 3,
+                    "name": "3",
+                    "type": "tram",
+                    "direction": "Kobylisy"
+                },
+                {
+                    "id": 10,
+                    "name": "10",
+                    "type": "tram",
+                    "direction": "Sídliště Ďáblice"
+                },
+                {
+                    "id": 24,
+                    "name": "24",
+                    "type": "tram",
+                    "direction": "Vozovna Kobylisy"
+                },
+                {
+                    "id": 36,
+                    "name": "36",
+                    "type": "tram",
+                    "direction": "Vozovna Kobylisy"
+                },
+                {
+                    "id": 95,
+                    "name": "95",
+                    "type": "tram",
+                    "isNight": true,
+                    "direction": "Vozovna Kobylisy"
+                },
+                {
+                    "id": 905,
+                    "name": "905",
+                    "type": "bus",
+                    "isNight": true,
+                    "direction": "Sídliště Čimice"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okrouhlická - Departure Board</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: #2d2d2d;
+            padding: 8px 16px;
+            border-bottom: 2px solid #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .station-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff00;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-badge {
+            background-color: #cc0000;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-badge:hover {
+            background-color: #ff0000;
+            transform: scale(1.05);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .current-time {
+            font-size: 16px;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .last-updated {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .platforms-container {
+            display: flex;
+            gap: 0;
+            height: calc(100vh - 60px);
+            overflow: hidden;
+        }
+
+        .platform-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0; /* Allow flex items to shrink */
+        }
+
+        .platform-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .platform-header {
+            background-color: #333;
+            padding: 6px 16px;
+            border-left: 4px solid #00ff00;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .platform-header.platform-b {
+            border-left-color: #ff6600;
+        }
+
+        .departures-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            table-layout: fixed;
+        }
+
+        .departures-table th {
+            background-color: #2d2d2d;
+            padding: 8px 6px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+            font-size: 11px;
+            color: #ccc;
+        }
+
+        .departures-table td {
+            padding: 6px 6px;
+            border-bottom: 1px solid #333;
+            vertical-align: middle;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .departures-table th:nth-child(1), 
+        .departures-table td:nth-child(1) { /* Line + Direction */
+            width: 40%;
+        }
+
+        .departures-table th:nth-child(2), 
+        .departures-table td:nth-child(2) { /* Departure */
+            width: 80px;
+        }
+
+        .departures-table th:nth-child(3), 
+        .departures-table td:nth-child(3) { /* In */
+            width: 70px;
+        }
+
+        .departures-table th:nth-child(4), 
+        .departures-table td:nth-child(4) { /* Delay */
+            width: 80px;
+        }
+
+        .departures-table th:nth-child(5), 
+        .departures-table td:nth-child(5) { /* Features */
+            width: 60px;
+        }
+
+        .departures-table tr:hover {
+            background-color: #2a2a2a;
+        }
+
+        .line-number {
+            background-color: #0066cc;
+            color: white;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .line-number:hover {
+            transform: scale(1.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .line-number.tram {
+            background-color: #cc0000;
+        }
+
+        .line-number.bus {
+            background-color: #0066cc;
+        }
+
+        .line-number.night {
+            background-color: #4a0080;
+        }
+
+        .direction {
+            font-weight: bold;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .departure-time {
+            font-weight: bold;
+            color: #00ff00;
+        }
+
+        .departure-time.delayed {
+            color: #ff6600;
+        }
+
+        .departure-time.very-delayed {
+            color: #ff0000;
+        }
+
+        .relative-time {
+            color: #ffff00;
+            font-weight: bold;
+        }
+
+        .delay {
+            color: #ff6600;
+            font-size: 11px;
+        }
+
+        .delay.no-delay {
+            color: #00ff00;
+        }
+
+        .features {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .wheelchair {
+            color: #00ff00;
+        }
+
+        .no-wheelchair {
+            color: #444;
+            filter: grayscale(100%) brightness(0.5);
+        }
+
+        .ac {
+            color: #00ccff;
+        }
+
+        .no-ac {
+            color: #444;
+            filter: grayscale(100%) brightness(0.5);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 16px;
+        }
+
+        .error {
+            background-color: #660000;
+            color: #ffffff;
+            padding: 10px 16px;
+            margin: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #ff0000;
+        }
+
+        /* Responsive design for mobile landscape */
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+            body {
+                font-size: 12px;
+            }
+            
+            .platforms-container {
+                gap: 0;
+            }
+            
+            .departures-table {
+                font-size: 11px;
+            }
+            
+            .departures-table th,
+            .departures-table td {
+                padding: 4px 3px;
+            }
+            
+            .station-name {
+                font-size: 16px;
+            }
+            
+            .platform-header {
+                font-size: 14px;
+                padding: 4px 12px;
+            }
+
+            /* Adjust column widths for mobile landscape */
+            .departures-table th:nth-child(1), 
+            .departures-table td:nth-child(1) { /* Line + Direction */
+                width: 35%;
+            }
+
+            .departures-table th:nth-child(2), 
+            .departures-table td:nth-child(2) { /* Departure */
+                width: 65px;
+            }
+
+            .departures-table th:nth-child(3), 
+            .departures-table td:nth-child(3) { /* In */
+                width: 55px;
+            }
+
+            .departures-table th:nth-child(4), 
+            .departures-table td:nth-child(4) { /* Delay */
+                width: 65px;
+            }
+
+            .departures-table th:nth-child(5), 
+            .departures-table td:nth-child(5) { /* Features */
+                width: 45px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            /* Stack platforms vertically on very small screens */
+            .platforms-container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+            
+            .platform-content {
+                overflow-y: visible;
+            }
+            
+            .departures-table th:nth-child(1), 
+            .departures-table td:nth-child(1) { /* Line + Direction */
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="station-name">🚋 Okrouhlická</div>
+        <div class="header-right">
+            <div class="current-time" id="currentTime">--:--:--</div>
+            <div class="last-updated" id="lastUpdated">Loading...</div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="loading">Loading departures...</div>
+    </div>
+
+    <script>
+        const API_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzk0MSwiaWF0IjoxNzU4MjY0MTE0LCJleHAiOjExNzU4MjY0MTE0LCJpc3MiOiJnb2xlbWlvIiwianRpIjoiZjdkNmY4N2ItZWU0ZC00ZGQ0LTlkMjQtNjljYWU4OTA5ZjQ5In0.f0VA9Nq6aGD4r9As6_Z0U3vXEUDBRHfCNWvrWnHBZyo';
+        const PLATFORM_A_ID = 'U514Z1P';
+        const PLATFORM_B_ID = 'U514Z2P';
+        
+        let departuresData = [];
+        let lastFetchTime = null;
+        let activeFilter = null;
+        let filterTimeout = null;
+
+        // Platform configurations
+        const platforms = {
+            [PLATFORM_A_ID]: { name: 'Platform A', class: 'platform-a' },
+            [PLATFORM_B_ID]: { name: 'Platform B', class: 'platform-b' }
+        };
+
+        function formatTime(timestamp) {
+            return new Date(timestamp).toLocaleTimeString('cs-CZ', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+        }
+
+        function getRelativeTime(timestamp) {
+            const now = new Date();
+            const departure = new Date(timestamp);
+            const diffMs = departure.getTime() - now.getTime();
+            const diffMinutes = Math.floor(diffMs / 60000);
+            const diffSeconds = Math.floor((diffMs % 60000) / 1000);
+
+            if (diffMs < 0) {
+                return 'Departed';
+            } else if (diffMinutes < 1) {
+                return `${Math.max(0, diffSeconds)}s`;
+            } else if (diffMinutes < 60) {
+                return `${diffMinutes}m ${diffSeconds}s`;
+            } else {
+                const hours = Math.floor(diffMinutes / 60);
+                const mins = diffMinutes % 60;
+                return `${hours}h ${mins}m`;
+            }
+        }
+
+        function getDelayClass(delayMinutes) {
+            if (delayMinutes === 0) return 'no-delay';
+            if (delayMinutes > 0 && delayMinutes <= 2) return 'delayed';
+            return 'very-delayed';
+        }
+
+        function getDepartureTimeClass(delayMinutes) {
+            if (delayMinutes === 0) return '';
+            if (delayMinutes > 0 && delayMinutes <= 2) return 'delayed';
+            return 'very-delayed';
+        }
+
+        function getLineTypeClass(route) {
+            if (route.is_night) return 'night';
+            if (route.type === 0) return 'tram'; // Tram
+            if (route.type === 3) return 'bus';  // Bus
+            return '';
+        }
+
+        function formatDelay(delay) {
+            if (!delay.is_available) return 'N/A';
+            if (delay.minutes === 0 && delay.seconds === 0) return 'On time';
+            
+            let delayText = '';
+            if (delay.minutes > 0) {
+                delayText += `+${delay.minutes}m`;
+            }
+            if (delay.seconds > 0) {
+                delayText += ` ${delay.seconds}s`;
+            }
+            return delayText || 'On time';
+        }
+
+        function setFilter(lineNumber) {
+            activeFilter = lineNumber;
+            
+            // Clear existing timeout
+            if (filterTimeout) {
+                clearTimeout(filterTimeout);
+            }
+            
+            // Set 30-second timeout to clear filter
+            filterTimeout = setTimeout(() => {
+                clearFilter();
+            }, 30000);
+            
+            updateHeader();
+            renderDepartures();
+        }
+
+        function clearFilter() {
+            activeFilter = null;
+            
+            if (filterTimeout) {
+                clearTimeout(filterTimeout);
+                filterTimeout = null;
+            }
+            
+            updateHeader();
+            renderDepartures();
+        }
+
+        function updateHeader() {
+            const stationNameDiv = document.querySelector('.station-name');
+            if (activeFilter) {
+                stationNameDiv.innerHTML = `
+                    <span>🚋 Okrouhlická</span>
+                    <span class="filter-badge" onclick="clearFilter()">Line ${activeFilter} ✕</span>
+                `;
+            } else {
+                stationNameDiv.innerHTML = '🚋 Okrouhlická';
+            }
+        }
+
+        function renderDepartures() {
+            const content = document.getElementById('content');
+            
+            if (departuresData.length === 0) {
+                content.innerHTML = '<div class="loading">No departures available</div>';
+                return;
+            }
+
+            // Filter departures if active filter is set
+            let filteredDepartures = departuresData;
+            if (activeFilter) {
+                filteredDepartures = departuresData.filter(departure => 
+                    departure.route.short_name === activeFilter
+                );
+            }
+
+            // Group departures by platform
+            const platformGroups = {};
+            
+            filteredDepartures.forEach(departure => {
+                const platformId = departure.stop.id;
+                if (!platformGroups[platformId]) {
+                    platformGroups[platformId] = [];
+                }
+                platformGroups[platformId].push(departure);
+            });
+
+            let html = '<div class="platforms-container">';
+
+            // Render each platform in specific order (Platform A first, then Platform B)
+            const orderedPlatformIds = [PLATFORM_A_ID, PLATFORM_B_ID];
+            orderedPlatformIds.forEach(platformId => {
+                if (!platformGroups[platformId]) return; // Skip if no departures for this platform
+                
+                const platform = platforms[platformId];
+                if (!platform) return;
+
+                const departures = platformGroups[platformId];
+                
+                html += `
+                    <div class="platform-section">
+                        <div class="platform-header ${platform.class}">
+                            <span>${platform.name}</span>
+                            <span>${departures.length} departures</span>
+                        </div>
+                        <div class="platform-content">
+                            <table class="departures-table">
+                                <thead>
+                                    <tr>
+                                        <th>Line & Direction</th>
+                                        <th>Departure</th>
+                                        <th>In</th>
+                                        <th>Delay</th>
+                                        <th>Features</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                `;
+
+                departures.forEach(departure => {
+                    const delayMinutes = departure.delay.is_available ? departure.delay.minutes : 0;
+                    const lineTypeClass = getLineTypeClass(departure.route);
+                    const departureTimeClass = getDepartureTimeClass(delayMinutes);
+                    const delayClass = getDelayClass(delayMinutes);
+                    
+                    html += `
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span class="line-number ${lineTypeClass}" onclick="setFilter('${departure.route.short_name}')">${departure.route.short_name}</span>
+                                    <div class="direction" title="${departure.trip.headsign}">${departure.trip.headsign}</div>
+                                </div>
+                            </td>
+                            <td class="departure-time ${departureTimeClass}">
+                                ${formatTime(departure.departure_timestamp.predicted)}
+                            </td>
+                            <td class="relative-time" data-departure-time="${departure.departure_timestamp.predicted}">
+                                ${getRelativeTime(departure.departure_timestamp.predicted)}
+                            </td>
+                            <td class="delay ${delayClass}">
+                                ${formatDelay(departure.delay)}
+                            </td>
+                            <td>
+                                <div class="features">
+                                    <span class="icon ${departure.trip.is_wheelchair_accessible ? 'wheelchair' : 'no-wheelchair'}" title="${departure.trip.is_wheelchair_accessible ? 'Wheelchair accessible' : 'Not wheelchair accessible'}">
+                                        ♿
+                                    </span>
+                                    <span class="icon ${departure.trip.is_air_conditioned ? 'ac' : 'no-ac'}" title="${departure.trip.is_air_conditioned ? 'Air conditioned' : 'No air conditioning'}">
+                                        ❄️
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            content.innerHTML = html;
+        }
+
+        async function fetchDepartures() {
+            try {
+                const platformAResponse = await fetch(`https://api.golemio.cz/v2/pid/departureboards?ids=${PLATFORM_A_ID}`, {
+                    headers: {
+                        'X-Access-Token': API_TOKEN
+                    }
+                });
+                
+                const platformBResponse = await fetch(`https://api.golemio.cz/v2/pid/departureboards?ids=${PLATFORM_B_ID}`, {
+                    headers: {
+                        'X-Access-Token': API_TOKEN
+                    }
+                });
+
+                if (!platformAResponse.ok || !platformBResponse.ok) {
+                    throw new Error('Failed to fetch departures');
+                }
+
+                const platformAData = await platformAResponse.json();
+                const platformBData = await platformBResponse.json();
+
+                // Combine departures from both platforms
+                departuresData = [
+                    ...platformAData.departures || [],
+                    ...platformBData.departures || []
+                ];
+
+                // Sort by departure time
+                departuresData.sort((a, b) => {
+                    return new Date(a.departure_timestamp.predicted) - new Date(b.departure_timestamp.predicted);
+                });
+
+                lastFetchTime = new Date();
+                document.getElementById('lastUpdated').textContent = `Updated: ${formatTime(lastFetchTime)}`;
+                
+                renderDepartures();
+                
+            } catch (error) {
+                console.error('Error fetching departures:', error);
+                document.getElementById('content').innerHTML = `
+                    <div class="error">
+                        Failed to load departures: ${error.message}
+                        <br>Retrying in 10 seconds...
+                    </div>
+                `;
+            }
+        }
+
+        // Update current time display
+        function updateCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('cs-CZ', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Update relative times every second
+        function updateRelativeTimes() {
+            const relativeTimes = document.querySelectorAll('.relative-time');
+            relativeTimes.forEach((element) => {
+                const departureTime = element.getAttribute('data-departure-time');
+                if (departureTime) {
+                    element.textContent = getRelativeTime(departureTime);
+                }
+            });
+        }
+
+        // Initialize the app
+        function init() {
+            updateHeader();
+            updateCurrentTime();
+            fetchDepartures();
+            
+            // Fetch new data every 10 seconds
+            setInterval(fetchDepartures, 10000);
+            
+            // Update current time and relative times every second
+            setInterval(() => {
+                updateCurrentTime();
+                updateRelativeTimes();
+            }, 1000);
+        }
+
+        // Start the app when the page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

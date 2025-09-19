@@ -1,0 +1,843 @@
+{
+    "stops": [
+        {
+            "location_type": 0,
+            "parent_station": null,
+            "platform_code": "A",
+            "stop_id": "U514Z1P",
+            "stop_lat": 50.119587,
+            "stop_lon": 14.460747,
+            "stop_name": "Okrouhlická",
+            "wheelchair_boarding": 1,
+            "zone_id": "P",
+            "level_id": null,
+            "asw_id": {
+                "node": 514,
+                "stop": 1
+            }
+        }
+    ],
+    "departures": [
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T09:41:17+02:00",
+                "scheduled": "2025-09-19T09:39:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 2,
+                "seconds": 137
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T09:41:17+02:00",
+                "scheduled": "2025-09-19T09:39:00+02:00",
+                "minutes": "1"
+            },
+            "last_stop": {
+                "id": "U249Z1P",
+                "name": "Ke Stírce"
+            },
+            "route": {
+                "short_name": "10",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Sídliště Řepy",
+                "id": "10_97_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T09:41:33+02:00",
+                "scheduled": "2025-09-19T09:42:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": -27
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T09:41:33+02:00",
+                "scheduled": "2025-09-19T09:42:00+02:00",
+                "minutes": "1"
+            },
+            "last_stop": {
+                "id": "U675Z1P",
+                "name": "Kobylisy"
+            },
+            "route": {
+                "short_name": "3",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Nádraží Braník",
+                "id": "3_13057_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T09:46:00+02:00",
+                "scheduled": "2025-09-19T09:46:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T09:46:00+02:00",
+                "scheduled": "2025-09-19T09:46:00+02:00",
+                "minutes": "6"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "24",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Náměstí Bratří Synků",
+                "id": "24_6701_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": false,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T09:49:00+02:00",
+                "scheduled": "2025-09-19T09:49:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T09:49:00+02:00",
+                "scheduled": "2025-09-19T09:49:00+02:00",
+                "minutes": "9"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "10",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Sídliště Řepy",
+                "id": "10_111_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": true,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T09:52:00+02:00",
+                "scheduled": "2025-09-19T09:52:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T09:52:00+02:00",
+                "scheduled": "2025-09-19T09:52:00+02:00",
+                "minutes": "12"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "3",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Nádraží Braník",
+                "id": "3_8587_250224",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T09:56:00+02:00",
+                "scheduled": "2025-09-19T09:56:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T09:56:00+02:00",
+                "scheduled": "2025-09-19T09:56:00+02:00",
+                "minutes": "16"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "24",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Náměstí Bratří Synků",
+                "id": "24_6715_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T09:59:00+02:00",
+                "scheduled": "2025-09-19T09:59:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T09:59:00+02:00",
+                "scheduled": "2025-09-19T09:59:00+02:00",
+                "minutes": "19"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "10",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Sídliště Řepy",
+                "id": "10_124_250714",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:02:00+02:00",
+                "scheduled": "2025-09-19T10:02:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:02:00+02:00",
+                "scheduled": "2025-09-19T10:02:00+02:00",
+                "minutes": "22"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "3",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Nádraží Braník",
+                "id": "3_13074_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:06:00+02:00",
+                "scheduled": "2025-09-19T10:06:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:06:00+02:00",
+                "scheduled": "2025-09-19T10:06:00+02:00",
+                "minutes": "26"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "24",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Náměstí Bratří Synků",
+                "id": "24_6728_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:09:00+02:00",
+                "scheduled": "2025-09-19T10:09:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:09:00+02:00",
+                "scheduled": "2025-09-19T10:09:00+02:00",
+                "minutes": "29"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "10",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Sídliště Řepy",
+                "id": "10_137_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:12:00+02:00",
+                "scheduled": "2025-09-19T10:12:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:12:00+02:00",
+                "scheduled": "2025-09-19T10:12:00+02:00",
+                "minutes": "32"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "3",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Nádraží Braník",
+                "id": "3_13085_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:16:00+02:00",
+                "scheduled": "2025-09-19T10:16:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:16:00+02:00",
+                "scheduled": "2025-09-19T10:16:00+02:00",
+                "minutes": "36"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "24",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Náměstí Bratří Synků",
+                "id": "24_6741_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:19:00+02:00",
+                "scheduled": "2025-09-19T10:19:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:19:00+02:00",
+                "scheduled": "2025-09-19T10:19:00+02:00",
+                "minutes": "39"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "10",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Sídliště Řepy",
+                "id": "10_150_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": true,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:22:00+02:00",
+                "scheduled": "2025-09-19T10:22:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:22:00+02:00",
+                "scheduled": "2025-09-19T10:22:00+02:00",
+                "minutes": "42"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "3",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Nádraží Braník",
+                "id": "3_13094_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:26:00+02:00",
+                "scheduled": "2025-09-19T10:26:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:26:00+02:00",
+                "scheduled": "2025-09-19T10:26:00+02:00",
+                "minutes": "46"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "24",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Náměstí Bratří Synků",
+                "id": "24_6759_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:29:00+02:00",
+                "scheduled": "2025-09-19T10:29:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:29:00+02:00",
+                "scheduled": "2025-09-19T10:29:00+02:00",
+                "minutes": "49"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "10",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Sídliště Řepy",
+                "id": "10_165_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:32:00+02:00",
+                "scheduled": "2025-09-19T10:32:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:32:00+02:00",
+                "scheduled": "2025-09-19T10:32:00+02:00",
+                "minutes": "52"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "3",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Nádraží Braník",
+                "id": "3_13132_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": false,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:36:00+02:00",
+                "scheduled": "2025-09-19T10:36:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:36:00+02:00",
+                "scheduled": "2025-09-19T10:36:00+02:00",
+                "minutes": "56"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "24",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Náměstí Bratří Synků",
+                "id": "24_6772_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": false,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:39:00+02:00",
+                "scheduled": "2025-09-19T10:39:00+02:00"
+            },
+            "delay": {
+                "is_available": true,
+                "minutes": 0,
+                "seconds": 0
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:39:00+02:00",
+                "scheduled": "2025-09-19T10:39:00+02:00",
+                "minutes": "59"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "10",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Sídliště Řepy",
+                "id": "10_179_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": true,
+                "short_name": null
+            }
+        },
+        {
+            "arrival_timestamp": {
+                "predicted": "2025-09-19T10:42:00+02:00",
+                "scheduled": "2025-09-19T10:42:00+02:00"
+            },
+            "delay": {
+                "is_available": false,
+                "minutes": null,
+                "seconds": null
+            },
+            "departure_timestamp": {
+                "predicted": "2025-09-19T10:42:00+02:00",
+                "scheduled": "2025-09-19T10:42:00+02:00",
+                "minutes": "62"
+            },
+            "last_stop": {
+                "id": null,
+                "name": null
+            },
+            "route": {
+                "short_name": "3",
+                "type": 0,
+                "is_night": false,
+                "is_regional": false,
+                "is_substitute_transport": false
+            },
+            "stop": {
+                "id": "U514Z1P",
+                "platform_code": "A"
+            },
+            "trip": {
+                "direction": null,
+                "headsign": "Nádraží Braník",
+                "id": "3_13143_250901",
+                "is_at_stop": false,
+                "is_canceled": false,
+                "is_wheelchair_accessible": true,
+                "is_air_conditioned": null,
+                "short_name": null
+            }
+        }
+    ],
+    "infotexts": []
+}
